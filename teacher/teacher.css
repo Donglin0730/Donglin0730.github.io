@@ -1,0 +1,94 @@
+.professor-section {
+    margin: 100px 150px;
+    padding: 50px 0;
+
+}
+
+.professor-container {
+    background-color: var(--light-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: 1px solid grey;
+    padding: 20px;
+    margin-bottom: 50px;
+}
+
+.professor-profile {
+    display: flex;
+    gap: 40px;
+}
+
+.left-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.profile-img {
+    text-align: center;
+}
+
+.professor-photo {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+    border: 1px solid black;
+    margin-bottom: 15px;
+}
+
+.professor-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.basic-info h3, .contact-info h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.basic-info ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.basic-info li {
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.contact-info a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.right-side {
+    flex: 2;
+    padding-left: 20px;
+    border-left: 2px solid var(--border-color);
+}
+
+.right-side h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.bio {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+hr.divider {
+    border: none;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 20px 0;
+}
+
+.right-side p{
+    line-height: 1.8;
+}
