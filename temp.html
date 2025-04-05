@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>成果详情</title>
+  <style>
+    :root {
+      --accent-color: #0e3865;
+    }
+
+    body {
+      font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    .detail-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .detail-header {
+      position: relative;
+      height: 60px;
+      background-color: var(--accent-color);
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .back-button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 8px 0;
+    }
+
+    .back-button:before {
+      content: "←";
+      margin-right: 8px;
+      font-size: 20px;
+    }
+
+    .back-button:hover {
+      text-decoration: underline;
+    }
+
+    .detail-title {
+      text-align: center;
+      padding: 25px 20px 20px;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--accent-color);
+    }
+
+    .detail-meta {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 25px 15px;
+      font-size: 0.9rem;
+      color: #666;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 20px;
+    }
+
+    .detail-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+      margin-bottom: 20px;
+      background-color: #f0f0f0;
+    }
+
+    .detail-content {
+      padding: 0 25px 30px;
+      line-height: 1.6;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .detail-container {
+        margin: 0 10px;
+      }
+
+      .detail-title {
+        font-size: 1.5rem;
+        padding: 20px 15px 15px;
+      }
+
+      .detail-meta {
+        padding: 0 15px 10px;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .detail-content {
+        padding: 0 15px 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="detail-container">
+  <div class="detail-header">
+    <button class="back-button" onclick="goBack()">返回</button>
+  </div>
+
+  <div id="detail-content">
+<!--内容由js展示-->
+  </div>
+</div>
+
+<script>
+  const currentNewsId = localStorage.getItem('currentNewsId');
+
+  const newsData = [
+    {
+      id: 1,
+      title: "团队成员论文accept",
+      date: "2025年4月4日",
+      content: "沈佳颖一作，朱东林和周昌军老师均为通信作者",
+      journal: "Cluster Computing",
+      image: "/img/news/4_4.jpg"
+    },
+    {
+      id: 2,
+      title: "团队成员论文accept",
+      date: "2025年3月13日",
+      content: "朱东林一作，沈佳颖，胡佳铃，欧阳兆隆分别为二三四作，周昌军老师为通信作者",
+      journal: "IEEE TETCI",
+      image: "/img/news/3_13.jpg"
+    },
+  ];
+
+  window.onload = function() {
+    if (currentNewsId) {
+      const newsItem = newsData.find(item => item.id == currentNewsId);
+
+      if (newsItem) {
+        document.title = newsItem.title;
+
+        // 内容
+        document.getElementById('detail-content').innerHTML = `
+                        <h1 class="detail-title">${newsItem.title}</h1>
+                        <div class="detail-meta">
+                            <span>发布日期: ${newsItem.date}</span>
+                            <span>来源期刊: ${newsItem.journal}</span>
+                        </div>
+                        <img class="detail-image" src="${newsItem.image}" alt="${newsItem.title}的图片">
+                        <div class="detail-content">
+                            <p>${newsItem.content}</p>
+                        </div>
+                    `;
+      }
+    }
+  };
+
+  function goBack() {
+    window.location.href = 'index.html';
+  }
+</script>
+</body>
+</html>
