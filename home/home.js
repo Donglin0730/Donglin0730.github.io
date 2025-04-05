@@ -203,6 +203,14 @@ const newsData = [
         content: "朱东林一作，沈佳颖，胡佳铃，欧阳兆隆分别为二三四作，周昌军老师为通信作者",
         journal: "IEEE TETCI",
         image: "/img/news/3_13.jpg"
+    },
+    {
+        id: 3,
+        title: "多名团队成员在浙江省大学生数学竞赛获奖",
+        date: "2024年12月11日",
+        content: "王乐怡、于筱艺获得浙江省大学生数学竞赛二等奖，沈佳颖获得浙江省大学生数学竞赛三等奖",
+        journal: "浙江省大学生数学竞赛",
+        image: "/img/news/math.jpg"
     }
 ];
 
@@ -221,4 +229,3 @@ window.onload = function() {
         }, 100);
     }
 };
-
