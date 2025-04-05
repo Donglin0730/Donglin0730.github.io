@@ -190,19 +190,19 @@ document.querySelectorAll('.card').forEach(card => {
 const newsData = [
     {
         id: 1,
-        title: "第一个重要事件",
-        date: "2025年3月1日",
-        content: "这是第一件事的详细描述，包含了重要信息和详情。",
-        journal: "科学与技术杂志",
-        image: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect fill='%230e3865' width='400' height='300'/%3E%3Ctext fill='white' font-family='Arial' font-size='20' x='50%' y='50%' text-anchor='middle'%3E第一件事的图片%3C/text%3E%3C/svg%3E"
+        title: "团队成员论文accept",
+        date: "2025年4月4日",
+        content: "沈佳颖一作，朱东林和周昌军老师均为通信作者",
+        journal: "Cluster Computing",
+        image: "/img/news/4_4.jpg"
     },
     {
         id: 2,
-        title: "第二个重要事件",
-        date: "2025年3月30日",
-        content: "这是第二件事的详细描述，包含了重要信息和详情。",
-        journal: "科学前沿期刊",
-        image: "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect fill='%23356a97' width='400' height='300'/%3E%3Ctext fill='white' font-family='Arial' font-size='20' x='50%' y='50%' text-anchor='middle'%3E第二件事的图片%3C/text%3E%3C/svg%3E"
+        title: "团队成员论文accept",
+        date: "2025年3月13日",
+        content: "朱东林一作，沈佳颖，胡佳铃，欧阳兆隆分别为二三四作，周昌军老师为通信作者",
+        journal: "IEEE TETCI",
+        image: "/img/news/3_13.jpg"
     }
 ];
 
@@ -221,3 +221,4 @@ window.onload = function() {
         }, 100);
     }
 };
+
