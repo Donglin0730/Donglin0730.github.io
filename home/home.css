@@ -526,7 +526,8 @@ footer {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     background-color: #faf7f7;
     border: 1px solid rgba(5, 194, 201, 0.2);
-    overflow: hidden;
+    height: 400px;
+    overflow-y: auto;
     max-width: 800px;
     margin: 0 auto;
 }
@@ -647,3 +648,4 @@ footer {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
