@@ -96,22 +96,32 @@
 
     @media (max-width: 768px) {
       .detail-container {
-        margin: 0 10px;
+        width:100vw;
+        min-height:100vh;
+        margin:0;
+        padding:15px;
+        border-radius:0;
+        box-shadow:none;
       }
 
       .detail-title {
         font-size: 1.5rem;
-        padding: 20px 15px 15px;
+         margin: 0 0 15px 0; 
+        padding: 0;
       }
 
       .detail-meta {
-        padding: 0 15px 10px;
-        flex-direction: column;
-        gap: 5px;
+        display:flex;
+        margin: 0 0 15px 0;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size:0.9rem;
       }
 
       .detail-content {
-        padding: 0 15px 25px;
+        font-size:1rem;
+        line-height:1.8;
+        margin:0 0 12px 0;
       }
     }
   </style>
@@ -212,6 +222,7 @@
 </script>
 </body>
 </html>
+
 
 
 
