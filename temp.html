@@ -18,8 +18,10 @@
     }
 
     .detail-container {
-      width:100vw;
+      width:100%;
       min-height:100vh;
+      padding:20px;
+      margin:0;
       background-color: #fff;
       border-radius: 12px;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
@@ -61,8 +63,9 @@
     .detail-title {
       text-align: center;
       padding: 25px 20px 20px;
-      font-size: 1.8rem;
+      font-size: 24px;
       font-weight: 600;
+      margin-bottom:16px;
       color: var(--accent-color);
     }
 
@@ -79,14 +82,16 @@
     .detail-image {
       width: 100%;
       max-height: 400px;
+      max-width:600px;
       object-fit: contain;
-      margin-bottom: 20px;
+      margin:20px auto;
       background-color: #f0f0f0;
     }
 
     .detail-content {
       padding: 0 25px 30px;
-      line-height: 1.6;
+      line-height: 1.8;
+      font-size:16px;
     }
 
     @keyframes fadeIn {
@@ -222,6 +227,7 @@
 </script>
 </body>
 </html>
+
 
 
 
