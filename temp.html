@@ -312,7 +312,9 @@
                             <span>发布日期: ${newsItem.date}</span>
                             <span>来源: ${newsItem.journal}</span>
                         </div>
-                        <img class="detail-image" src="${newsItem.image}" alt="${newsItem.title}的图片">
+                        ${(newsItem.images ?? [newsItem.image])
+  .map(src => `<img class="detail-image" src="${src}" alt="${newsItem.title}的图片">`)
+  .join('')}
                         <div class="detail-content">
                             <p>${newsItem.content}</p>
                         </div>
