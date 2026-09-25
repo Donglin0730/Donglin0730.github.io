@@ -79,19 +79,26 @@
       margin-bottom: 20px;
     }
 
-    .detail-image {
-      width: 100%;
-      max-height: 400px;
-      object-fit: contain;
-      margin:20px auto;
-      background-color: #f0f0f0;
-    }
-
     .detail-content {
       padding: 0 25px 30px;
       line-height: 1.8;
       font-size:24px;
     }
+
+    .detail-images {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap: 16px;
+     margin: 20px 25px;
+     }
+
+    .detail-images .detail-image {
+      width: calc(50% - 8px);
+      max-height: 400px;
+      object-fit: contain;
+      margin: 0;
+      }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
@@ -312,9 +319,9 @@
                             <span>发布日期: ${newsItem.date}</span>
                             <span>来源: ${newsItem.journal}</span>
                         </div>
-                        ${(newsItem.images ?? [newsItem.image])
-  .map(src => `<img class="detail-image" src="${src}" alt="${newsItem.title}的图片">`)
-  .join('')}
+                        <div class="detail-images">${(newsItem.images ?? [newsItem.image])
+                        .map(src => `<img class="detail-image" src="${src}" alt="${newsItem.title}的图片">`).join('')}
+                        </div>
                         <div class="detail-content">
                             <p>${newsItem.content}</p>
                         </div>
