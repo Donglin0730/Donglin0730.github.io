@@ -100,6 +100,86 @@
       margin: 0;
       }
 
+    /* ===== 新增：多图轮播样式，不影响单图新闻 ===== */
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f5f5f5;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+.carousel-img {
+  flex: 0 0 100%;
+  width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  background: #f5f5f5;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s, background 0.25s;
+}
+
+.carousel:hover .carousel-btn { opacity: 1; }
+.carousel-btn:hover { background: rgba(0, 0, 0, 0.55); }
+.carousel-btn.prev { left: 12px; }
+.carousel-btn.next { right: 12px; }
+
+.carousel-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  transition: background 0.25s, transform 0.25s;
+}
+
+.carousel-dot.active {
+  background: #fff;
+  transform: scale(1.25);
+}
+
+/* 手机端适配 */
+@media (max-width: 768px) {
+  .carousel-img { max-height: 240px; }
+  .carousel-btn { opacity: 1; width: 30px; height: 30px; font-size: 18px; }
+}
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -301,38 +381,143 @@
       content: "本科期间，团队成员于筱艺和王乐怡深耕科研、积极参与竞赛。于筱艺发表权威B级期刊论文1篇，获全国大学生市场调查与分析大赛国家级三等奖，并主持完成国家级大学生创新创业训练计划项目1项；王乐怡发表期刊论文1篇，获2025年长三角师范生教学基本功大赛一等奖，并主持完成国家级大学生创新创业训练计划项目1项。凭借扎实的科研积累和出色的竞赛表现，两人均成功获得推免资格，分别保研至东南大学和苏州大学。",
      journal: "东南大学、苏州大学",
     images: ["/img/news/yxyby.jpg", "/img/news/wlyby.png"]
+},
+      {
+      id: 16,
+      title: "团队成员荣获2025—2026学年国家奖学金",
+      date: "2026年10月8日",
+      content: "近日，2025—2026学年国家奖学金评选结果揭晓，团队成员、计算机科学与技术学院2024级计算机科学与技术专业本科生蒋佳辰荣获国家奖学金。<br><br>"
+    + "蒋佳辰自入学以来，始终把学习作为首要任务，2025—2026学年加权平均成绩位列专业第2名，综合考评位列专业第1名，17门必修课全部及格。在学科竞赛中，他获全国高校计算机能力挑战赛（C++）国家级二等奖、（Word）国家级三等奖，第十六届全国大学生市场调查与分析大赛省级一等奖，“挑战杯”中国大学生创业计划大赛省铜奖，以及浙江省大学生人工智能竞赛三等奖等多项国家级、省级和校级奖项。<br><br>"
+    + "在学习和竞赛之外，蒋佳辰担任班长并参与学生会工作，认真服务同学，注重沟通协调，努力做到学习不松懈、责任不缺位。作为中共预备党员，他严于律己，主动承担集体责任。<br><br>"
+    + "蒋佳辰同学的获奖，既是个人勤勉学习、全面发展的结果，也体现了智能计算实验室注重学生创新能力与综合素质培养的育人成效。实验室全体师生向他表示热烈祝贺，同时团队全体成员将以他为榜样，脚踏实地、勇于创新，不断取得新成绩。",
+     journal: "浙江师范大学计算机科学与技术学院",
+    images: [ "/img/news/jjcgj.png"]
 }
+    
   
   ];
 
-  window.onload = function() {
-    if (currentNewsId) {
-      const newsItem = newsData.find(item => item.id == currentNewsId);
+ window.onload = function() {
+  if (!currentNewsId) return;
 
-      if (newsItem) {
-        document.title = newsItem.title;
+  const newsItem = newsData.find(item => item.id == currentNewsId);
+  if (!newsItem) return;
 
-        // 内容
-        document.getElementById('detail-content').innerHTML = `
-                        <h1 class="detail-title">${newsItem.title}</h1>
-                        <div class="detail-meta">
-                            <span>发布日期: ${newsItem.date}</span>
-                            <span>来源: ${newsItem.journal}</span>
-                        </div>
-                        <div class="detail-images">${(newsItem.images ?? [newsItem.image])
-                        .map(src => `<img class="detail-image" src="${src}" alt="${newsItem.title}的图片">`).join('')}
-                        </div>
-                        <div class="detail-content">
-                            <p>${newsItem.content}</p>
-                        </div>
-                    `;
-      }
-    }
-  };
+  document.title = newsItem.title;
+
+  // 统一取图片数组（兼容 images 和 image 两种字段）
+  const rawImgs = (newsItem.images && newsItem.images.length)
+    ? newsItem.images
+    : [newsItem.image];
+  const imgs = rawImgs.filter(Boolean);
+  const multi = imgs.length > 1;   // 只有多图才走轮播
+
+  // 多图 -> 轮播结构；单图 -> 保持原来的 detail-images 结构（视觉不变）
+  const imagesHtml = multi
+    ? `
+      <div class="carousel" id="newsCarousel">
+        <div class="carousel-track" id="carouselTrack">
+          ${imgs.map(src => `<img class="carousel-img" src="${src}" alt="${newsItem.title}的图片">`).join('')}
+        </div>
+        <button class="carousel-btn prev" type="button" aria-label="上一张">‹</button>
+        <button class="carousel-btn next" type="button" aria-label="下一张">›</button>
+        <div class="carousel-dots">
+          ${imgs.map((_, i) => `<span class="carousel-dot${i === 0 ? ' active' : ''}" data-index="${i}"></span>`).join('')}
+        </div>
+      </div>
+    `
+    : `
+      <div class="detail-images">
+        ${imgs.map(src => `<img class="detail-image" src="${src}" alt="${newsItem.title}的图片">`).join('')}
+      </div>
+    `;
+
+  document.getElementById('detail-content').innerHTML = `
+    <h1 class="detail-title">${newsItem.title}</h1>
+    <div class="detail-meta">
+      <span>发布日期: ${newsItem.date}</span>
+      <span>来源: ${newsItem.journal}</span>
+    </div>
+    ${multi ? `<div class="detail-images">${imagesHtml}</div>` : imagesHtml}
+    <div class="detail-content">
+      <p>${newsItem.content}</p>
+    </div>
+  `;
+
+  // 只有多图才初始化轮播
+  if (multi) {
+    setupCarousel('newsCarousel', imgs.length);
+  }
+};
 
   function goBack() {
     window.location.href = 'index.html';
   }
+
+  function setupCarousel(rootId, total, interval = 3000) {
+  const root = document.getElementById(rootId);
+  if (!root || total <= 1) return;
+
+  const track = root.querySelector('.carousel-track');
+  const dots = root.querySelectorAll('.carousel-dot');
+  const prevBtn = root.querySelector('.carousel-btn.prev');
+  const nextBtn = root.querySelector('.carousel-btn.next');
+
+  let index = 0;
+  let timer = null;
+
+  function render() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+  }
+
+  function goTo(i) {
+    index = (i + total) % total;
+    render();
+  }
+
+  function start() {
+    stop();
+    timer = setInterval(() => goTo(index + 1), interval);
+  }
+
+  function stop() {
+    if (timer) { clearInterval(timer); timer = null; }
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      goTo(Number(dot.dataset.index));
+      start();
+    });
+  });
+
+  prevBtn && prevBtn.addEventListener('click', () => { goTo(index - 1); start(); });
+  nextBtn && nextBtn.addEventListener('click', () => { goTo(index + 1); start(); });
+
+  // 鼠标悬停暂停
+  root.addEventListener('mouseenter', stop);
+  root.addEventListener('mouseleave', start);
+
+  // 手机触摸滑动
+  let startX = 0, deltaX = 0;
+  root.addEventListener('touchstart', e => {
+    stop();
+    startX = e.touches[0].clientX;
+    deltaX = 0;
+  }, { passive: true });
+  root.addEventListener('touchmove', e => {
+    deltaX = e.touches[0].clientX - startX;
+  }, { passive: true });
+  root.addEventListener('touchend', () => {
+    if (Math.abs(deltaX) > 40) {
+      goTo(deltaX < 0 ? index + 1 : index - 1);
+    }
+    start();
+  });
+
+  start();
+}
 </script>
 </body>
 </html>
